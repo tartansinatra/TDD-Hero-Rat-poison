@@ -27,23 +27,27 @@ describe('hero', function(){
   });
   it('can eat fav food and replenish health * 1.5', function(){
     hero1.health = 100;
+    food1.poisonStatus = false
     hero1.eat(food1);
     assert.equal(115, hero1.health);
   });
+  it('can eat poisoned food and deplete health * 0.5', function(){
+    hero1.health = 100;
+    food1.poisonStatus = true
+    hero1.eat(food1);
+    assert.equal(50, hero1.health);
+  })
 })
 
 
 describe('food', function(){
   var food1 = new Food('pizza', 10);
-  
-  
-  
   it('has a name', function(){
     assert.equal('pizza', food1.name)
   });
   it('has a replenishment value', function(){
     assert.equal(10, food1.replenishmentValue)
-  })
+  });
 })
 
 describe('rat', function(){
